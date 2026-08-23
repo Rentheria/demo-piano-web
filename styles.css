@@ -1,307 +1,261 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 :root {
-    --cream: #FBF9F6;
-    --cream-dark: #F5F1EB;
-    --charcoal: #2A2A2A;
-    --charcoal-light: #3F3F3F;
-    --accent: #6B6B6B;
-    --shadow: rgba(0, 0, 0, 0.1);
-    --shadow-strong: rgba(0, 0, 0, 0.2);
+  --cream: #F7F5F0;
+  --cream-dark: #E8E4DC;
+  --charcoal: #141410;
+  --charcoal-mid: #2a2a2a;
+  --charcoal-light: #4a4a48;
+  --white-key: #faf9f6;
+  --white-key-border: #c8c4bc;
+  --white-key-active: #d4cfc4;
+  --black-key: #1a1a18;
+  --black-key-active: #3d3d38;
+  --white-key-width: 52px;
+  --white-key-height: 220px;
+  --black-key-width: 32px;
+  --black-key-height: 130px;
+}
+
+html {
+  font-size: 16px;
 }
 
 body {
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-    background: var(--cream);
-    color: var(--charcoal);
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 2rem 1rem;
-}
-
-.container {
-    max-width: 1400px;
-    width: 100%;
+  min-height: 100vh;
+  font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+  background: var(--cream);
+  color: var(--charcoal);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1.5rem 1rem 2rem;
+  line-height: 1.5;
 }
 
 header {
-    text-align: center;
-    margin-bottom: 2rem;
+  text-align: center;
+  max-width: 900px;
+  margin-bottom: 2rem;
 }
 
-h1 {
-    font-size: 3rem;
-    font-weight: 700;
-    color: var(--charcoal);
-    margin-bottom: 0.5rem;
-    letter-spacing: -0.02em;
+header h1 {
+  font-size: clamp(1.25rem, 3vw, 1.75rem);
+  font-weight: 600;
+  color: var(--charcoal);
+  letter-spacing: -0.02em;
 }
 
 .subtitle {
-    font-size: 1.1rem;
-    color: var(--accent);
-    font-weight: 400;
+  margin-top: 0.5rem;
+  color: var(--charcoal-light);
+  font-size: 0.95rem;
 }
 
-.info-panel {
-    background: white;
-    border-radius: 16px;
-    padding: 1.5rem 2rem;
-    margin-bottom: 2rem;
-    box-shadow: 0 2px 12px var(--shadow);
+main {
+  width: 100%;
+  max-width: 960px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2.5rem;
 }
 
-.keyboard-hints h3 {
-    font-size: 1.2rem;
-    font-weight: 600;
-    color: var(--charcoal);
-    margin-bottom: 1rem;
-}
-
-.hints-grid {
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
-}
-
-.hint-group {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-}
-
-.hint-label {
-    font-weight: 600;
-    color: var(--charcoal);
-    min-width: 140px;
-}
-
-.hint-keys {
-    font-family: 'Courier New', monospace;
-    background: var(--cream);
-    padding: 0.5rem 1rem;
-    border-radius: 8px;
-    font-weight: 600;
-    letter-spacing: 0.15em;
-    color: var(--charcoal);
-}
-
-.piano-container {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 3rem;
-    padding: 2rem;
-    background: white;
-    border-radius: 20px;
-    box-shadow: 0 4px 24px var(--shadow);
-}
-
+/* ── Piano container ── */
 .piano {
-    display: flex;
-    position: relative;
-    user-select: none;
-    height: 280px;
+  position: relative;
+  display: flex;
+  background: var(--charcoal-mid);
+  border-radius: 0 0 8px 8px;
+  padding: 0 6px 6px;
+  box-shadow:
+    0 4px 24px rgba(20, 20, 16, 0.18),
+    0 1px 4px rgba(20, 20, 16, 0.12);
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
 }
 
-.key {
-    position: relative;
-    cursor: pointer;
-    transition: all 0.05s ease;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-end;
-    padding-bottom: 1rem;
+/* ── White keys ── */
+.key-white {
+  position: relative;
+  width: var(--white-key-width);
+  height: var(--white-key-height);
+  background: linear-gradient(180deg, var(--white-key) 0%, #f0ede6 100%);
+  border: 1px solid var(--white-key-border);
+  border-top: none;
+  border-radius: 0 0 6px 6px;
+  cursor: pointer;
+  z-index: 1;
+  transition: background 0.05s ease, transform 0.05s ease;
+  flex-shrink: 0;
 }
 
-.key.white {
-    width: 60px;
-    height: 280px;
-    background: white;
-    border: 2px solid var(--cream-dark);
-    border-radius: 0 0 8px 8px;
-    box-shadow: 0 4px 8px var(--shadow);
-    z-index: 1;
+.key-white:first-child {
+  border-radius: 0 0 0 6px;
 }
 
-.key.white:hover {
-    background: var(--cream);
+.key-white:last-child {
+  border-radius: 0 0 6px 0;
 }
 
-.key.white:active,
-.key.white.active {
-    background: var(--cream-dark);
-    transform: translateY(2px);
-    box-shadow: 0 2px 4px var(--shadow);
+.key-white:hover {
+  background: linear-gradient(180deg, #fff 0%, var(--cream-dark) 100%);
 }
 
-.key.black {
-    width: 40px;
-    height: 180px;
-    background: var(--charcoal);
-    border: 2px solid var(--charcoal-light);
-    border-radius: 0 0 6px 6px;
-    margin-left: -20px;
-    margin-right: -20px;
-    z-index: 2;
-    box-shadow: 0 6px 12px var(--shadow-strong);
+.key-white.active {
+  background: var(--white-key-active);
+  transform: translateY(2px);
+  box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.12);
 }
 
-.key.black:hover {
-    background: var(--charcoal-light);
+.key-white .key-label {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.65rem;
+  color: var(--charcoal-light);
+  pointer-events: none;
+  opacity: 0.7;
 }
 
-.key.black:active,
-.key.black.active {
-    background: var(--accent);
-    transform: translateY(2px);
-    box-shadow: 0 3px 6px var(--shadow-strong);
+/* ── Black keys (individual, absolutely positioned) ── */
+.key-black {
+  position: absolute;
+  top: 0;
+  width: var(--black-key-width);
+  height: var(--black-key-height);
+  background: linear-gradient(180deg, #2e2e2c 0%, var(--black-key) 40%, #0d0d0c 100%);
+  border: 1px solid #000;
+  border-radius: 0 0 4px 4px;
+  cursor: pointer;
+  z-index: 2;
+  transition: background 0.05s ease, transform 0.05s ease;
+  box-shadow:
+    2px 2px 4px rgba(0, 0, 0, 0.4),
+    inset 0 -2px 4px rgba(255, 255, 255, 0.06);
 }
 
-.key-label {
-    font-weight: 600;
-    font-size: 0.9rem;
-    opacity: 0.6;
-    margin-bottom: 0.5rem;
-    pointer-events: none;
+.key-black:hover {
+  background: linear-gradient(180deg, #3a3a38 0%, #222220 40%, #151514 100%);
 }
 
-.key.white .key-label {
-    color: var(--charcoal);
+.key-black.active {
+  background: var(--black-key-active);
+  transform: translateY(2px);
+  box-shadow:
+    1px 1px 2px rgba(0, 0, 0, 0.3),
+    inset 0 2px 6px rgba(0, 0, 0, 0.5);
 }
 
-.key.black .key-label {
-    color: white;
+/* ── Keyboard shortcuts panel ── */
+.shortcuts {
+  width: 100%;
+  background: var(--cream-dark);
+  border: 1px solid #d8d4cc;
+  border-radius: 8px;
+  padding: 1.25rem 1.5rem;
 }
 
-.note-label {
-    font-size: 0.75rem;
-    opacity: 0.5;
-    font-weight: 500;
-    color: var(--accent);
-    pointer-events: none;
+.shortcuts h2 {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: var(--charcoal);
 }
 
-.key.black .note-label {
-    display: none;
+.shortcut-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.5rem;
+}
+
+.shortcut-group h3 {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--charcoal-mid);
+  margin-bottom: 0.5rem;
+}
+
+.shortcut-group ul {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+  gap: 0.35rem 0.75rem;
+}
+
+.shortcut-group li {
+  font-size: 0.8rem;
+  color: var(--charcoal-light);
+}
+
+kbd {
+  display: inline-block;
+  min-width: 1.4em;
+  padding: 0.1em 0.45em;
+  font-family: inherit;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-align: center;
+  background: var(--cream);
+  border: 1px solid #bbb;
+  border-radius: 4px;
+  box-shadow: 0 1px 0 #999;
+  color: var(--charcoal);
+  margin-right: 0.25em;
 }
 
 footer {
-    text-align: center;
-    color: var(--accent);
-    font-size: 0.9rem;
-    line-height: 1.8;
+  margin-top: 2rem;
+  text-align: center;
+  font-size: 0.8rem;
+  color: var(--charcoal-light);
 }
 
-.license {
-    font-size: 0.85rem;
-    opacity: 0.7;
+/* ── Responsive ── */
+@media (max-width: 860px) {
+  :root {
+    --white-key-width: 42px;
+    --white-key-height: 180px;
+    --black-key-width: 26px;
+    --black-key-height: 108px;
+  }
 }
 
-/* Mobile responsiveness */
-@media (max-width: 1200px) {
-    .piano {
-        height: 220px;
-    }
-    
-    .key.white {
-        width: 48px;
-        height: 220px;
-    }
-    
-    .key.black {
-        width: 32px;
-        height: 140px;
-        margin-left: -16px;
-        margin-right: -16px;
-    }
-    
-    h1 {
-        font-size: 2.5rem;
-    }
+@media (max-width: 680px) {
+  :root {
+    --white-key-width: 34px;
+    --white-key-height: 150px;
+    --black-key-width: 22px;
+    --black-key-height: 90px;
+  }
+
+  .key-white .key-label {
+    display: none;
+  }
+
+  .shortcuts {
+    padding: 1rem;
+  }
 }
 
-@media (max-width: 900px) {
-    .piano {
-        height: 180px;
-    }
-    
-    .key.white {
-        width: 40px;
-        height: 180px;
-    }
-    
-    .key.black {
-        width: 28px;
-        height: 115px;
-        margin-left: -14px;
-        margin-right: -14px;
-    }
-    
-    .key-label,
-    .note-label {
-        font-size: 0.7rem;
-    }
-    
-    h1 {
-        font-size: 2rem;
-    }
-}
+@media (max-width: 560px) {
+  :root {
+    --white-key-width: 28px;
+    --white-key-height: 130px;
+    --black-key-width: 18px;
+    --black-key-height: 78px;
+  }
 
-@media (max-width: 600px) {
-    body {
-        padding: 1rem 0.5rem;
-    }
-    
-    .piano-container {
-        padding: 1rem;
-        overflow-x: auto;
-    }
-    
-    .piano {
-        height: 160px;
-    }
-    
-    .key.white {
-        width: 35px;
-        height: 160px;
-    }
-    
-    .key.black {
-        width: 24px;
-        height: 100px;
-        margin-left: -12px;
-        margin-right: -12px;
-    }
-    
-    .hints-grid {
-        font-size: 0.9rem;
-    }
-    
-    .hint-label {
-        min-width: 120px;
-    }
-}
-
-/* Visual feedback animations */
-@keyframes pulse {
-    0% {
-        transform: scale(1);
-    }
-    50% {
-        transform: scale(0.98);
-    }
-    100% {
-        transform: scale(1);
-    }
-}
-
-.key.active {
-    animation: pulse 0.1s ease;
+  .piano {
+    overflow-x: auto;
+    max-width: 100%;
+  }
 }
