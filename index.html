@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Piano Web - Meetup GDL Demo</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🎹 Piano Web</h1>
+            <p class="subtitle">Demo de cursor-native-agent para Meetup GDL</p>
+        </header>
+
+        <div class="info-panel">
+            <div class="keyboard-hints">
+                <h3>⌨️ Atajos de Teclado</h3>
+                <div class="hints-grid">
+                    <div class="hint-group">
+                        <span class="hint-label">Teclas blancas:</span>
+                        <span class="hint-keys">A S D F G H J K L</span>
+                    </div>
+                    <div class="hint-group">
+                        <span class="hint-label">Teclas negras:</span>
+                        <span class="hint-keys">W E T Y U O P</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="piano-container">
+            <div class="piano" id="piano">
+                <!-- White keys -->
+                <div class="key white" data-note="C3" data-key="a">
+                    <span class="key-label">A</span>
+                    <span class="note-label">C3</span>
+                </div>
+                <div class="key black" data-note="C#3" data-key="w">
+                    <span class="key-label">W</span>
+                </div>
+                <div class="key white" data-note="D3" data-key="s">
+                    <span class="key-label">S</span>
+                    <span class="note-label">D3</span>
+                </div>
+                <div class="key black" data-note="D#3" data-key="e">
+                    <span class="key-label">E</span>
+                </div>
+                <div class="key white" data-note="E3" data-key="d">
+                    <span class="key-label">D</span>
+                    <span class="note-label">E3</span>
+                </div>
+                <div class="key white" data-note="F3" data-key="f">
+                    <span class="key-label">F</span>
+                    <span class="note-label">F3</span>
+                </div>
+                <div class="key black" data-note="F#3" data-key="t">
+                    <span class="key-label">T</span>
+                </div>
+                <div class="key white" data-note="G3" data-key="g">
+                    <span class="key-label">G</span>
+                    <span class="note-label">G3</span>
+                </div>
+                <div class="key black" data-note="G#3" data-key="y">
+                    <span class="key-label">Y</span>
+                </div>
+                <div class="key white" data-note="A3" data-key="h">
+                    <span class="key-label">H</span>
+                    <span class="note-label">A3</span>
+                </div>
+                <div class="key black" data-note="A#3" data-key="u">
+                    <span class="key-label">U</span>
+                </div>
+                <div class="key white" data-note="B3" data-key="j">
+                    <span class="key-label">J</span>
+                    <span class="note-label">B3</span>
+                </div>
+                
+                <!-- Octave 4 -->
+                <div class="key white" data-note="C4" data-key="k">
+                    <span class="key-label">K</span>
+                    <span class="note-label">C4</span>
+                </div>
+                <div class="key black" data-note="C#4" data-key="o">
+                    <span class="key-label">O</span>
+                </div>
+                <div class="key white" data-note="D4" data-key="l">
+                    <span class="key-label">L</span>
+                    <span class="note-label">D4</span>
+                </div>
+                <div class="key black" data-note="D#4" data-key="p">
+                    <span class="key-label">P</span>
+                </div>
+                <div class="key white" data-note="E4" data-key=";">
+                    <span class="key-label">;</span>
+                    <span class="note-label">E4</span>
+                </div>
+                <div class="key white" data-note="F4" data-key="'">
+                    <span class="key-label">'</span>
+                    <span class="note-label">F4</span>
+                </div>
+                <div class="key white" data-note="G4">
+                    <span class="note-label">G4</span>
+                </div>
+                <div class="key white" data-note="A4">
+                    <span class="note-label">A4</span>
+                </div>
+                <div class="key white" data-note="B4">
+                    <span class="note-label">B4</span>
+                </div>
+                <div class="key white" data-note="C5">
+                    <span class="note-label">C5</span>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p>Construido con Web Audio API • Sin frameworks • Sin build tools</p>
+            <p class="license">MIT License • 2026</p>
+        </footer>
+    </div>
+
+    <script src="piano.js"></script>
+</body>
+</html>
