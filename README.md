@@ -1,79 +1,41 @@
-# 🎹 Piano Web
+# Piano Web — demo cursor-native-agent
 
-Demo construido para **Meetup GDL** mostrando las capacidades de **cursor-native-agent**.
+Piano visual de dos octavas (C3–C5) creado como demo para **Meetup GDL** y el proyecto **cursor-native-agent**.
 
-## ✨ Características
+Sin dependencias: HTML, CSS y JavaScript puro con Web Audio API.
 
-- Piano interactivo de 2+ octavas (C3 a C5)
-- Interfaz limpia con estética Cursor (crema y carbón)
-- Soporte para mouse, teclado y táctil (móvil)
-- Síntesis de audio con Web Audio API
-- Sin frameworks, sin build tools, sin dependencias npm
-- Completamente auto-contenido
+## Cómo abrirlo
 
-## 🚀 Cómo usar
+**Opción 1 — directo en el navegador**
 
-### Opción 1: Abrir directamente
-Simplemente abre `index.html` en tu navegador favorito (Chrome, Firefox, Safari, Edge).
+Abre `index.html` con doble clic o arrástralo al navegador.
 
-### Opción 2: Servidor HTTP local
+**Opción 2 — servidor local (recomendado)**
+
 ```bash
-# Python 3
+cd /workspace/meetup-demo-recording/dash-piano
 python -m http.server 8080
-
-# Python 2
-python -m SimpleHTTPServer 8080
-
-# Node.js (si tienes npx)
-npx http-server -p 8080
 ```
 
-Luego visita: `http://localhost:8080`
+Luego visita [http://localhost:8080](http://localhost:8080).
 
-## ⌨️ Atajos de Teclado
+## Cómo tocar
 
-### Teclas blancas (notas naturales)
-```
-A S D F G H J K L ; '
-C D E F G A B C D E F
-```
+- **Mouse / touch:** pulsa cualquier tecla blanca o negra.
+- **Teclado del equipo:** usa las teclas indicadas en la interfaz.
 
-### Teclas negras (sostenidos)
-```
-W E   T Y U   O P
-C# D# F# G# A# C# D#
-```
+### Atajos
 
-## 🎵 Notas técnicas
+| Octava 3 | Tecla |
+|----------|-------|
+| C3–B3    | Z S X D C V G B H N J M |
 
-- **Web Audio API**: Síntesis de audio en tiempo real usando osciladores de onda sinusoidal
-- **Envolvente ADSR**: Ataque, decaimiento y liberación suaves para un sonido más natural
-- **Responsive**: Adaptado para desktop, tablet y móvil
-- **Accesible**: Funciona sin conexión a internet (excepto fuentes de Google)
+| Octava 4–5 | Tecla |
+|------------|-------|
+| C4–C5      | Q 2 W 3 E R 5 T 6 Y 7 U I |
 
-## 📁 Estructura
+## Detalles técnicos
 
-```
-.
-├── index.html    # Estructura HTML del piano
-├── styles.css    # Estilos con paleta Cursor
-├── piano.js      # Lógica del piano y Web Audio API
-└── README.md     # Este archivo
-```
-
-## 🛠️ Tecnologías
-
-- HTML5
-- CSS3 (Flexbox, variables CSS, responsive design)
-- JavaScript (ES6+)
-- Web Audio API
-
-## 📝 Licencia
-
-MIT License © 2026
-
-Construido con ❤️ usando cursor-native-agent para Meetup GDL.
-
----
-
-**¿Preguntas?** Este proyecto fue generado completamente por un agente de Cursor como demostración de desarrollo asistido por IA.
+- Teclas negras individuales con posición absoluta (no una franja continua).
+- Síntesis con envolvente ADSR (ataque, decaimiento, sustain, release).
+- Feedback visual al pulsar (mouse o teclado).
